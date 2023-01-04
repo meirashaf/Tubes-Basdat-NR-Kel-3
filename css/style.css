@@ -498,6 +498,37 @@ body{
     padding: 30px 0px;  
 }
 
+.collection_text2{ 
+    width: 100%; 
+    float: left; 
+    color: #ffffff; 
+    text-align: center;
+    background-color: #000000;
+    padding: 30px 0px;  
+    border-radius: 20px;
+}
+
+.collection_text3{ 
+    width: 100%; 
+    float: left; 
+    color: #000000; 
+    background-color: #ffe1e1;
+    padding: 30px 0px;  
+    border-radius: 10px;
+}
+
+.hr-white{
+    height: 1px;
+    border-width:0;
+    background-color:#ffffff;
+}
+
+.hr-grey{
+    height: 1px;
+    border-width:0;
+    background-color:#b1b1b1;
+}
+
 .sale_text{
 	width: 100%;
 	float: left;
