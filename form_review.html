@@ -66,104 +66,99 @@
     <section class="h-100" style="background-color: #eee;">
         <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-
                 <div class="col-10 best_text fw-semibold text-left">
                     <div class="collection_text">Ulasan Produk</div>
-                    <div class="bg-white">
-                        <div class="card rounded-3 mb-4 bg-white">
-                            <div class="card-body p-4">
-                                <div class="row d-flex justify-content-between align-items-center">
-                                    <div class="col-md-2 col-lg-2 col-xl-2">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                            class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                    </div>
-                                    <div class="col-md-3 col-lg-3 col-xl-3">
-                                        <p class="lead fw-normal mb-2 best_text">Basic T-shirt</p>
-
-                                    </div>
-
-                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                        <button class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                            <i class="bi bi-dash"></i>
-                                        </button>
-
-                                        <input id="form1" min="0" name="quantity" value="2" type="number"
-                                            class="form-control form-control-sm" />
-
-                                        <button class="btn btn-link px-2"
-                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                            <i class="bi bi-plus"></i>
-                                        </button>
-                                    </div>
-                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                        <h5 class="mb-0">Rp 129.000,00</h5>
-                                    </div>
+                    <div class="card rounded-3 mb-4">
+                        <div class="card-body p-4">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="col-md-2 col-lg-2 col-xl-2">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="file-upload-content">
-                            <img class="file-upload-image" src="#" alt="your image" />
-                            <div class="image-title-wrap">
-                                <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
-                                        class="image-title">Uploaded Image</span></button>
-                            </div>
-                        </div>
-                        <div class="grid row">
-                            <div class="col">
-                                <div class="col">
-                                    <div class="mb-3 ">
-                                        <div class="mb-3">
-                                            <label for="formGroupExampleInput2" class="form-label">Review</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                                placeholder=""></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container ">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="formGroupExampleInput2" class="form-label">Rating</label>
-                                            <div class="star-rating">
-                                                <span class="fa fa-star-o" data-rating="1"></span>
-                                                <span class="fa fa-star-o" data-rating="2"></span>
-                                                <span class="fa fa-star-o" data-rating="3"></span>
-                                                <span class="fa fa-star-o" data-rating="4"></span>
-                                                <span class="fa fa-star-o" data-rating="5"></span>
-                                                <input type="hidden" name="whatever1" class="rating-value" value="2.56">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <script class="jsbin"
-                                    src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-                                <div class="file-upload">
-                                    <button class="file-upload-btn" type="button"
-                                        onclick="$('.file-upload-input').trigger( 'click' )">Unggah Gambar</button>
+                                <div class="col-md-3 col-lg-3 col-xl-3">
+                                    <p class="lead fw-normal mb-2 best_text">Basic T-shirt</p>
 
-                                    <div class="image-upload-wrap">
-                                        <input class="file-upload-input" type='file' onchange="readURL(this);"
-                                            accept="image/*" />
-                                        <div class="drag-text">
-                                            <h3>Drag and drop a file or select add Image</h3>
-                                        </div>
-                                    </div>
+                                </div>
 
+                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                    <button class="btn btn-link px-2"
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                        <i class="bi bi-dash"></i>
+                                    </button>
+
+                                    <input id="form1" min="0" name="quantity" value="2" type="number"
+                                        class="form-control form-control-sm" />
+
+                                    <button class="btn btn-link px-2"
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                        <i class="bi bi-plus"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                    <h5 class="mb-0">Rp 129.000,00</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body d-flex justify-content-center bg-white">
-                        <button class="seemore rounded">
-                            <a href="./index.html">Submit</a>
-                        </button>
+                    <div class="file-upload-content">
+                        <img class="file-upload-image" src="#" alt="your image" />
+                        <div class="image-title-wrap">
+                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span
+                                    class="image-title">Uploaded Image</span></button>
+                        </div>
                     </div>
+                    <div class="grid row">
+                        <div class="col">
+                            <div class="col">
+                                <div class="mb-3 ">
+                                    <div class="mb-3">
+                                        <label for="formGroupExampleInput2" class="form-label">Review</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                            placeholder=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container ">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="formGroupExampleInput2" class="form-label">Rating</label>
+                                        <div class="star-rating">
+                                          <span class="fa fa-star-o" data-rating="1"></span>
+                                          <span class="fa fa-star-o" data-rating="2"></span>
+                                          <span class="fa fa-star-o" data-rating="3"></span>
+                                          <span class="fa fa-star-o" data-rating="4"></span>
+                                          <span class="fa fa-star-o" data-rating="5"></span>
+                                          <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <script class="jsbin"
+                                src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+                            <div class="file-upload">
+                                <button class="file-upload-btn" type="button"
+                                    onclick="$('.file-upload-input').trigger( 'click' )">Unggah Gambar</button>
+
+                                <div class="image-upload-wrap">
+                                    <input class="file-upload-input" type='file' onchange="readURL(this);"
+                                        accept="image/*" />
+                                    <div class="drag-text">
+                                        <h3>Drag and drop a file or select add Image</h3>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container bg-white mt-5">
+                        <div class="card-body d-flex justify-content-center ">
+                            <button class="seemore">Submit</button>
+                        </div>
+                    </div>
+
                 </div>
-
-
-            </div>
 
     </section>
 
