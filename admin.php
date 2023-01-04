@@ -13,7 +13,6 @@ if (isset($_POST['submit'])) {
         'Harga' => $_POST['Harga'],
         'Gambar' => $file_name,
     ]);
-    $_SESSION['success'] = "Data Mahasiswa Berhasil di tambahkan";
     header("Location: index.php");
 }
 ?>

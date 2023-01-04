@@ -81,7 +81,7 @@ foreach ($TopProduk as $Prod) {
 					<div class="col-md-4">
 						<div class="sale_text"><strong>Sale <br><span style="color: #0a0506;"><?php echo $nama ?></span></div>
 						<div class="number_text"><strong>Rp <?php echo $harga ?><span style="color: #0a0506"></span></strong></div>
-						<button class="seemore">Selengkapnya</button>
+						<button class="seemore" onclick="location.href='./detail_produk.php?nama=$nama'">Selengkapnya</button>
 					</div>
 				</div>
 			</div>
@@ -113,6 +113,7 @@ foreach ($TopProduk as $Prod) {
 					<div class='right_part'>
 						<div class='shoes_price'><span style='color: #ff4e5b'>$pro->Harga</span></div>
 					</div>
+					<button class='seemore' onclick='location.href='./detail_produk.php?nama=$nama''>Selengkapnya</button>
 				</div>
 			</div>";
 			}
