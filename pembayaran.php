@@ -1,3 +1,7 @@
+<?php session_start();
+require 'config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,8 +33,7 @@
     <!-- owl stylesheets -->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-        media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -44,15 +47,13 @@
             </div>
             <div class="col-sm-9 d-flex justify-content-end">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav d-flex">
-                            <a class="nav-item nav-link" href="index.html">Home</a>
-                            <a class="nav-item nav-link last" href="./cart.html">
+                            <a class="nav-item nav-link" href="index.php">Home</a>
+                            <a class="nav-item nav-link last" href="cart.php">
                                 <i class="bi bi-bag-fill"></i></a>
                         </div>
                     </div>
@@ -61,6 +62,32 @@
         </div>
     </div>
 </div>
+
+<?php
+require 'config.php';
+$Bayar = $order->find();
+foreach ($Bayar as $byr) {
+}
+
+// echo $byr->_id;
+
+// echo $byr->Metode_bayar;
+// echo "1235 8316 8282 8929";
+// echo "Pending";
+
+$Bayar = $order->find();
+foreach ($Bayar as $byr) {
+}
+
+$pay->insertOne([
+    'id' => $byr->_id,
+    'Metode_bayar' => $byr->Metode_bayar,
+    'no_va' => '1235 8316 8282 8929',
+    'Status_bayar' => 'pending',
+    'Nominal' => $byr->Total
+]);
+// echo $byr->Total;
+?>
 
 <body class="main-layout">
     <section class="h-100" style="background-color: #eee;">
@@ -73,11 +100,11 @@
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex">
                                     <h4 class="mb-0">Total : </h5>
-                                    <h4 class="mb-0 mx-3"><b>14.000</b></h5>
+                                        <h4 class="mb-0 mx-3"><b><?php echo $byr->Total; ?></b></h5>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex justify-content-end">
                                     <h4 class="mr-2">ID</h5>
-                                    <h4 class="mb-0">013F8SN3248Q1</h5>
+                                        <h4 class="mb-0"><?php echo $byr->_id; ?></h5>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-12 d-flex justify-content-start">
                                     <h5 class="mr-2">Bayar sampai dengan 23h 59m sebelum kedaluarsa</h5>
@@ -89,24 +116,24 @@
                                     <div class="collection_text2 row">
                                         <div class="col-12">
                                             <h1 style="color:white">
-                                                1235 8316 8282 8929 
+                                                1235 8316 8282 8929
                                             </h1>
                                             <hr class="hr-white">
                                             <h1 style="color: white;">
                                                 <b>
-                                                    Bank BNI
+                                                    <?php echo $byr->Metode_bayar; ?>
                                                 </b>
                                             </h1>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-12 mt-5 d-flex justify-content-center text-center">
-                                    <h5 class="mr-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+                                    <!-- <h5 class="mr-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5> -->
                                 </div>
                                 <div class="container bg-white mt-3">
                                     <div class="card-body d-flex justify-content-center ">
                                         <button class="seemore rounded">
-                                            <a href="./pengiriman.html">Pengiriman</a>
+                                            <a href="./pengiriman.php">Pengiriman</a>
                                         </button>
                                     </div>
                                 </div>
@@ -131,72 +158,71 @@
     <script src="js/owl.carousel.js"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $(".fancybox").fancybox({
-                openEffect: "none",
-                closeEffect: "none"
-            });
+        $(document).ready(function() {
+                    $(".fancybox").fancybox({
+                        openEffect: "none",
+                        closeEffect: "none"
+                    });
 
 
 
-            $('#myCarousel').carousel({
-                interval: false
-            });
+                    $('#myCarousel').carousel({
+                        interval: false
+                    });
 
-            //scroll slides on swipe for touch enabled devices
+                    //scroll slides on swipe for touch enabled devices
 
-            $("#myCarousel").on("touchstart", function (event) {
+                    $("#myCarousel").on("touchstart", function(event) {
 
-                var yClick = event.originalEvent.touches[0].pageY;
-                $(this).one("touchmove", function (event) {
+                        var yClick = event.originalEvent.touches[0].pageY;
+                        $(this).one("touchmove", function(event) {
 
-                    var yMove = event.originalEvent.touches[0].pageY;
-                    if (Math.floor(yClick - yMove) > 1) {
-                        $(".carousel").carousel('next');
-                    }
-                    else if (Math.floor(yClick - yMove) < -1) {
-                        $(".carousel").carousel('prev');
-                    }
-                });
-                $(".carousel").on("touchend", function () {
-                    $(this).off("touchmove");
-                });
-            });
+                            var yMove = event.originalEvent.touches[0].pageY;
+                            if (Math.floor(yClick - yMove) > 1) {
+                                $(".carousel").carousel('next');
+                            } else if (Math.floor(yClick - yMove) < -1) {
+                                $(".carousel").carousel('prev');
+                            }
+                        });
+                        $(".carousel").on("touchend", function() {
+                            $(this).off("touchmove");
+                        });
+                    });
     </script>
 
     <script>
-            function readURL(input) {
-                if (input.files && input.files[0]) {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
 
-                    var reader = new FileReader();
+                var reader = new FileReader();
 
-                    reader.onload = function (e) {
-                        $('.image-upload-wrap').hide();
+                reader.onload = function(e) {
+                    $('.image-upload-wrap').hide();
 
-                        $('.file-upload-image').attr('src', e.target.result);
-                        $('.file-upload-content').show();
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
 
-                        $('.image-title').html(input.files[0].name);
-                    };
+                    $('.image-title').html(input.files[0].name);
+                };
 
-                    reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(input.files[0]);
 
-                } else {
-                    removeUpload();
-                }
+            } else {
+                removeUpload();
             }
+        }
 
-            function removeUpload() {
-                $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-                $('.file-upload-content').hide();
-                $('.image-upload-wrap').show();
-            }
-            $('.image-upload-wrap').bind('dragover', function () {
-                $('.image-upload-wrap').addClass('image-dropping');
-            });
-            $('.image-upload-wrap').bind('dragleave', function () {
-                $('.image-upload-wrap').removeClass('image-dropping');
-            });
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function() {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function() {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
     </script>
 
 </body>

@@ -3,33 +3,36 @@ require 'config.php';
 
 // fetch data
 // if (isset($_GET['id'])) {
-$mhs = $collection->findOne(['_id' => new MongoDB\BSON\ObjectID($_GET['id'])]);
+$mhs = $cart->findOne(['_id' => new MongoDB\BSON\ObjectID($_GET['id'])]);
 
 $harga = $mhs->Harga;
 $gambar = $mhs->Gambar;
 $kategori = $mhs->Kategori;
 $deskripsi = $mhs->Deskripsi;
 $berat = $mhs->Berat;
-$Stok = $mhs->Stok;
-// }
+$Stok = $mhs->Qty;
+//   }
 
-// insert ke tabel keranjang
-if (isset($_POST['add_cart'])) {
-    $cart->insertOne([
-        '_id' => new MongoDB\BSON\ObjectID($_GET['id']),
-        'Nama' => $mhs->Nama,
-        'Harga' => $mhs->Harga,
-        'Qty' => $_POST['Qty'],
-        'Subtotal' => $mhs->Harga * $_POST['Qty'],
-        'Gambar' => $mhs->Gambar,
-        'Berat' => $mhs->Berat,
-        'Stok' => $mhs->Stok,
-    ]);
-    // $_SESSION['success'] = "Data Mahasiswa berhasil diubah";
+//   insert ke tabel keranjang
+if (isset($_POST['Confirm'])) {
+    if ($_POST['Qty'] > 0) { //jumlah berubah
+        $cart->updateOne(
+            ['_id' => new MongoDB\BSON\ObjectID($_GET['id'])],
+            [
+                '$set' => [
+                    'Qty' => $_POST['Qty']
+                ]
+            ]
+        );
+        header("Location: cart.php");
+    } else { //jumlah menjadi 0
+        $cart->deleteOne(['_id' => new MongoDB\BSON\ObjectID($_GET['id'])]);
+    }
     header("Location: cart.php");
 }
 
 
+// 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,8 +94,6 @@ require 'config.php';
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav d-flex">
                             <a class="nav-item nav-link" href="index.php">Home</a>
-                            <!-- <a class="nav-item nav-link last" href="cart.php" name>
-                                </a> -->
                             <button type="submit" name="add_cart" class="nav-item nav-link last">
                                 <i class="bi bi-bag-fill"></i>
                             </button>
@@ -157,7 +158,7 @@ require 'config.php';
                                             <div class="row text-center">
                                                 <div class="col">
                                                     <div class="rounded" style="background-color: rgb(235, 235, 235);">
-                                                        <h5 class="pt-2"><?php echo $mhs->Stok ?></h5>
+                                                        <h5 class="pt-2"><?= $mhs->Stok  ?></h5>
                                                     </div>
                                                 </div>
                                                 <div class="col rounded">
@@ -182,10 +183,8 @@ require 'config.php';
                                                         <h5>Jumlah</h5>
                                                     </div>
                                                     <div class="col-4">
-                                                        <!-- <input id="form1" min="0" name="quantity" type="number" class="col form-control form-control-sm" /> -->
                                                         <form method="POST">
-
-                                                            <input type="number" class="col form-control form-control-sm" name="Qty" min="1" max="<?= $mhs->Stok ?>" id="form1">
+                                                            <input type="number" class="col form-control form-control-sm" name="Qty" min="0" max="<?= $mhs->Stok  ?>" placeholder="<?= $mhs->Qty  ?>" value="<?= $mhs->Qty  ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -200,7 +199,7 @@ require 'config.php';
                                                 </div>
                                             </div>
                                             <div class="col-12 my-2 d-flex justify-content-center">
-                                                <button type="submit" name="add_cart" class="btn btn-primary mr-2">Add to Cart</button>
+                                                <button type="submit" name="Confirm" class="btn btn-primary mr-2">confirm</button>
                                                 </form>
 
                                             </div>

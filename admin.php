@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav d-flex">
                             <a class="nav-item nav-link" href="admin.php">Produk</a>
-                            <a class="nav-item nav-link" href="acc_bayar.html">Konfirmasi Pembayaran</a>
+                            <a class="nav-item nav-link" href="acc_bayar.php">Konfirmasi Pembayaran</a>
                         </div>
                     </div>
                 </nav>

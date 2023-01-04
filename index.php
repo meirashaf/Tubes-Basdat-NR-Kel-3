@@ -60,7 +60,7 @@ foreach ($TopProduk as $Prod) {
 					<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 						<div class="navbar-nav d-flex">
 							<a class="nav-item nav-link" href="./index.php">Home</a>
-							<a class="nav-item nav-link last" href="./cart.html">
+							<a class="nav-item nav-link last" href="cart.php">
 								<i class="bi bi-bag-fill"></i></a>
 						</div>
 					</div>
@@ -96,6 +96,7 @@ foreach ($TopProduk as $Prod) {
 	<div class="container mw-100" style="background-color: #eee;">
 		<div class="row d-flex flex-wrap d-flex justify-content-center">
 			<?php
+			$Produk = $collection->find();
 			foreach ($Produk as $pro) {
 				echo "<div class='col-sm-3 bg-white m-1'>
 				<p class='best_text'>$pro->Nama</p>
@@ -112,8 +113,8 @@ foreach ($TopProduk as $Prod) {
 					</div>
 					<div class='right_part'>
 						<div class='shoes_price'><span style='color: #ff4e5b'>$pro->Harga</span></div>
-					</div>
-					<button class='seemore' onclick='location.href='./detail_produk.php?nama=$nama''>Selengkapnya</button>
+					</div>";
+				echo "<a class='seemore' href='detail_produk.php?id=" . $pro->_id . "'>Selengkapnya</a>
 				</div>
 			</div>";
 			}

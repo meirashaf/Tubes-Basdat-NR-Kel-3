@@ -1,3 +1,7 @@
+<?php session_start();
+require 'config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,8 +33,7 @@
     <!-- owl stylesheets -->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-        media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -44,15 +47,13 @@
             </div>
             <div class="col-sm-9 d-flex justify-content-end">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav d-flex">
-                            <a class="nav-item nav-link" href="index.html">Home</a>
-                            <a class="nav-item nav-link last" href="./cart.html">
+                            <a class="nav-item nav-link" href="index.php">Home</a>
+                            <a class="nav-item nav-link last" href="cart.php">
                                 <i class="bi bi-bag-fill"></i></a>
                         </div>
                     </div>
@@ -80,9 +81,9 @@
                                                 </b>
                                             </h3>
                                             <h4>
-                                                Estimasi Kedatangan : 
+                                                Estimasi Kedatangan :
                                                 <b>
-                                                    Dec xx
+                                                    6 Januari 2023
                                                 </b>
                                             </h4>
                                         </div>
@@ -90,7 +91,7 @@
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-12 d-flex justify-content-end mt-3">
                                     <h4 class="mr-2">ID</h5>
-                                    <h4 class="mb-0">013F8SN3248Q1</h5>
+                                        <h4 class="mb-0">013F8SN3248Q1</h5>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-12 d-flex justify-content-start">
                                     <i class="bi bi-geo-alt-fill mr-2"></i>
@@ -108,49 +109,56 @@
                                     <h2 class="mr-2"><b>Nama Toko</b></h2>
                                 </div>
                                 <!-- Section 1 -->
-                                <div class="row d-flex justify-content-between align-items-center" style="">
-                                    <div class="col-md-2 col-lg-2 col-xl-2 ml-3">
-                                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                            class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                <!-- loop  -->
+                                <?php
+                                $total = 0;
+                                $Produk = $cart->find();
+                                foreach ($Produk as $pro) {
+                                    echo "<div class='row container-fluid d-flex justify-content-between align-items-center'>
+                                    <div class='col-md-2 col-lg-2 col-xl-2 ml-3'>
+                                        <img src='uploads/$pro->Gambar' class='img-fluid rounded-3'>
                                     </div>
-                                    <div class="col-md-3 col-lg-3 col-xl-2">
-                                        <p class="lead fw-normal mb-2 best_text">Basic T-shirt</p>
-    
-                                    </div>
-                                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                        <div class="row d-flex justify-content-start">
-                                            <h5 class="mt-3 col-4">x2</h5>
-                                            <h5 class="col-12" style="color: grey;">Rp 129.000,00</h5>
+                                    <div class='col-md-5 col-lg-3 col-xl-2 d-flex'>
+                                        <div class='row d-flex justify-content-start'>
+                                            <h5 class='mt-3 col-4'>x</h5>
+                                            <h5 class='mt-3 col-4'>$pro->Qty</h5>
+                                            <h5 class='col-12' style='color: grey;'>Rp$pro->Harga</h5>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                        
-                                        <h5 class="mb-0"><b>Rp 129.000,00</b></h5>
+                                    <div class='col-md-5 col-lg-2 col-xl-2 offset-lg-1 text-center'>
+
+                                        <h5 class='mb-0'><b>Rp$pro->Subtotal</b></h5>
                                     </div>
-                                </div>
+                                </div>";
+                                }
+
+                                ?>
                                 <div class="my-3 col-md-3 col-lg-3 col-xl-12 my-2 d-flex justify-content-center" style="background: rgb(212, 212, 212); width: 70%;">
                                 </div>
                                 <!-- Section 2 -->
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex">
                                     <h4 class="mb-0">Subtotal</h4>
-                                    
+
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex justify-content-end">
-                                    <h4 class="mb-0">RP 60.000</h4>
+                                    <h4 class="mb-0">RP
+                                        <?php echo $pro->Subtotal; ?>
+                                    </h4>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex">
                                     <h4 class="mb-0">Pengiriman</h4>
-                                    
+
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex justify-content-end">
                                     <h4 class="mb-0">RP 10.000</h4>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex">
                                     <h4 class="mb-0"><b>Total</b></h4>
-                                    
+
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex justify-content-end">
-                                    <h4 class="mb-0"><b>Rp70.000</b></h4>
+                                    <h4 class="mb-0"><b>Rp <?php echo $pro->Subtotal + 10000; ?>
+                                        </b></h4>
                                 </div>
                                 <!-- Section 3 -->
                                 <div class="my-3 col-md-3 col-lg-3 col-xl-12 my-2 d-flex justify-content-center" style="background: rgb(212, 212, 212); width: 70%;">
@@ -159,28 +167,30 @@
                                     <h4 class="mb-0">Nomor Pemesanan</h4>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex justify-content-end">
-                                    <h4 class="mb-0">0189189028</h4>
+                                    <h4 class="mb-0"> <?php echo $pro->_id; ?>
+                                    </h4>
                                 </div>
 
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex">
                                     <h4 class="mb-0">Tanggal Pemesanan</h4>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex justify-content-end">
-                                    <h4 class="mb-0">dd-mm-yy 11:00 PM</h4>
+                                    <h4 class="mb-0">05-01-2023 11:00 AM</h4>
                                 </div>
-                                
+
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex">
                                     <h4 class="mb-0">Metode Pembayaran</h4>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex justify-content-end">
-                                    <h4 class="mb-0">Bank BNI</h4>
+                                    <h4 class="mb-0"> <?php echo $pro->Metode_bayar; ?>
+                                    </h4>
                                 </div>
 
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex">
                                     <h4 class="mb-0">Tanggal Pembayaran</h4>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex justify-content-end">
-                                    <h4 class="mb-0">dd-mm-yy 11:00 PM</h4>
+                                    <h4 class="mb-0">05-01-2023 11:00 AM</h4>
                                 </div>
 
                                 <div class="col-md-3 col-lg-3 col-xl-6 d-flex">
@@ -190,6 +200,16 @@
                                     <h4 class="mb-0">Jvt686xxxxxx</h4>
                                 </div>
                             </div>
+                            <div class="container bg-white mt-3">
+                                <div class="card-body d-flex justify-content-center ">
+                                    <button class="seemore rounded" type="submit" name="pesan">
+                                        <a href="form_review.php" class="btn"> Pesanan Selesai
+                                        </a>
+                                    </button>
+                                    </form>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -210,72 +230,71 @@
     <script src="js/owl.carousel.js"></script>
     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $(".fancybox").fancybox({
-                openEffect: "none",
-                closeEffect: "none"
-            });
+        $(document).ready(function() {
+                    $(".fancybox").fancybox({
+                        openEffect: "none",
+                        closeEffect: "none"
+                    });
 
 
 
-            $('#myCarousel').carousel({
-                interval: false
-            });
+                    $('#myCarousel').carousel({
+                        interval: false
+                    });
 
-            //scroll slides on swipe for touch enabled devices
+                    //scroll slides on swipe for touch enabled devices
 
-            $("#myCarousel").on("touchstart", function (event) {
+                    $("#myCarousel").on("touchstart", function(event) {
 
-                var yClick = event.originalEvent.touches[0].pageY;
-                $(this).one("touchmove", function (event) {
+                        var yClick = event.originalEvent.touches[0].pageY;
+                        $(this).one("touchmove", function(event) {
 
-                    var yMove = event.originalEvent.touches[0].pageY;
-                    if (Math.floor(yClick - yMove) > 1) {
-                        $(".carousel").carousel('next');
-                    }
-                    else if (Math.floor(yClick - yMove) < -1) {
-                        $(".carousel").carousel('prev');
-                    }
-                });
-                $(".carousel").on("touchend", function () {
-                    $(this).off("touchmove");
-                });
-            });
+                            var yMove = event.originalEvent.touches[0].pageY;
+                            if (Math.floor(yClick - yMove) > 1) {
+                                $(".carousel").carousel('next');
+                            } else if (Math.floor(yClick - yMove) < -1) {
+                                $(".carousel").carousel('prev');
+                            }
+                        });
+                        $(".carousel").on("touchend", function() {
+                            $(this).off("touchmove");
+                        });
+                    });
     </script>
 
     <script>
-            function readURL(input) {
-                if (input.files && input.files[0]) {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
 
-                    var reader = new FileReader();
+                var reader = new FileReader();
 
-                    reader.onload = function (e) {
-                        $('.image-upload-wrap').hide();
+                reader.onload = function(e) {
+                    $('.image-upload-wrap').hide();
 
-                        $('.file-upload-image').attr('src', e.target.result);
-                        $('.file-upload-content').show();
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-content').show();
 
-                        $('.image-title').html(input.files[0].name);
-                    };
+                    $('.image-title').html(input.files[0].name);
+                };
 
-                    reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(input.files[0]);
 
-                } else {
-                    removeUpload();
-                }
+            } else {
+                removeUpload();
             }
+        }
 
-            function removeUpload() {
-                $('.file-upload-input').replaceWith($('.file-upload-input').clone());
-                $('.file-upload-content').hide();
-                $('.image-upload-wrap').show();
-            }
-            $('.image-upload-wrap').bind('dragover', function () {
-                $('.image-upload-wrap').addClass('image-dropping');
-            });
-            $('.image-upload-wrap').bind('dragleave', function () {
-                $('.image-upload-wrap').removeClass('image-dropping');
-            });
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
+        }
+        $('.image-upload-wrap').bind('dragover', function() {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function() {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
     </script>
 
 </body>
